@@ -5,6 +5,8 @@ let lastCard = document.querySelector("#last > div> .card");
 let current = generateEquation(1, 9, "*");
 let isCorrect = document.querySelector("#is-correct > h1");
 let picture = document.querySelector("#is-correct > img");
+let submitButton = document.querySelector("#hidden-submit");
+let setupForm = document.getElementById("selection");
 card.innerHTML = `${current.equation}<br><br>?`;
 
 function generateCard() {
@@ -13,6 +15,10 @@ function generateCard() {
 
 userAnswer.addEventListener("keypress", (e) => {
   if (e.key === "Enter" && userAnswer.value !== "") {
+    // const selectedOperations = submitButton.click();
+    // console.log(selectedOperations);
+    // if (selectedOperations) {
+    // console.log(selectedOperations);
     e.preventDefault();
     lastCard.innerHTML = `${current.equation}<br><br>${current.answer}`;
     lastUserAnswer.value = userAnswer.value;
@@ -23,6 +29,7 @@ userAnswer.addEventListener("keypress", (e) => {
     current = generateEquation(1, 9, "*");
     card.innerHTML = `${current.equation}<br><br>?`;
     userAnswer.value = "";
+    // }
   }
   //   card.classList.toggle("flip");
 });
@@ -71,3 +78,20 @@ function evaluateAnswer(a, b) {
   audio.play();
   return result;
 }
+
+// setupForm.addEventListener("submit", function (event) {
+//   event.preventDefault();
+//   const checkboxes = document.querySelectorAll(
+//     'input[name="operation"]:checked'
+//   );
+//   const selections = Array.from(checkboxes).map((checkbox) => checkbox.value);
+//   if (selections.length > 0) {
+//     return selections;
+//   }
+//   console.log(selections);
+//   console.log("should return false");
+//   return false;
+
+//   // Now you can use the selectedOperations array to generate problems based on user selections.
+//   // For example, if "addition" is selected, generate addition problems; if "multiplication" is selected, generate multiplication problems, and so on.
+// });

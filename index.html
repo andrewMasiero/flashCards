@@ -24,17 +24,20 @@
             <h3>Choose a type and number range:</h3>
 
             <form class="setup" action="script.js" id="selection">
-                <input type="checkbox" id="addition" name="addition" value="addition">
+                <input type="checkbox" id="addition" name="operation" value="+">
                 <label for="addition">Addition</label><br>
 
-                <input type="checkbox" id="subtraction" name="subtraction" value="subtraction">
+                <input type="checkbox" id="subtraction" name="operation" value="-">
                 <label for="subtraction">Subtraction</label><br>
 
-                <input type="checkbox" id="multiplication" name="multiplication" value="multiplication">
+                <input type="checkbox" id="multiplication" name="operation" value="*">
                 <label for="multiplication">Multiplication</label><br>
 
-                <input type="checkbox" id="division" name="division" value="division">
+                <input type="checkbox" id="division" name="operation" value="/">
                 <label for="division">Division</label><br>
+
+                <input type="submit" id="hidden-submit" style="display: none;">
+
             </form>
 
         </section>
@@ -46,6 +49,9 @@
                         2 x 3
                     </button>
                     <input type="text" class="answer" placeholder="?" autofocus>
+                    <div id="blank-image">
+                        <h1></h1><img src="" alt="">
+                    </div>
                 </div>
             </div>
             <div id="last">
@@ -62,14 +68,8 @@
             </div>
         </section>
     </main>
-    <footer><small>This is the footer</small></footer>
+    <footer>This is the footer</footer>
     <script src="script.js"></script>
 </body>
 
 </html>
-
-<!-- 
-    requests from Mia
-    make the input box a BIG circle
-
--->
