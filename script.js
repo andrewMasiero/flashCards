@@ -29,7 +29,7 @@ const lastProblemSection = collectElements(
   ["button", "input", "image"]
 );
 lastProblemSection.title = document.querySelector("#last-problem > h2");
-console.dir(lastProblemSection.input);
+console.dir(lastProblemSection.image);
 
 // OTHER VARIABLES
 
@@ -58,7 +58,7 @@ function updateLastProblem() {
   );
   lastUserAnswer.style.color = evaluation.isCorrect ? "green" : "red";
   lastProblemSection.title.textContent = evaluation.message;
-  picture.src = evaluation.image;
+  lastProblemSection.image.src = evaluation.image;
 }
 
 function updateCurrentProblem() {
