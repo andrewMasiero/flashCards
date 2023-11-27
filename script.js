@@ -1,4 +1,5 @@
 import {
+  elementTest,
   generateCard,
   updateCard,
   getRandomInteger,
@@ -15,12 +16,17 @@ let isCorrect = document.querySelector("#is-correct-text");
 let picture = document.querySelector("#is-correct-image > img");
 let submitButton = document.querySelector("#hidden-submit");
 let setupForm = document.getElementById("setup-form");
-card.innerHTML = `${currentProblem.equation}<br><br>?`;
+// card.innerHTML = `${currentProblem.equation}<br><br>?`;
+const currentProblemSection = document.querySelector("#current-problem > div");
+
+document.addEventListener("keypress", (e) => {
+  elementTest(currentProblemSection);
+});
 
 currentUserAnswer.addEventListener("keypress", (e) => {
   if (e.key === "Enter" && currentUserAnswer.value !== "") {
     e.preventDefault();
-    updateLastProblem();
+    // updateLastProblem();
     updateCurrentProblem();
   }
 });

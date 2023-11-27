@@ -55,7 +55,17 @@ function evaluateAnswer(a, b) {
   return result;
 }
 
+function elementTest(testElement) {
+  console.log(testElement.children[0]);
+  // const button = testElement.children[1].children[0];
+  // const input = testElement.children[1].children[1];
+  // const image = testElement.children[1].children[2];
+  // console.log(button, input, image);
+  // console.dir(testElement);
+}
+
 export {
+  elementTest,
   generateCard,
   updateCard,
   getRandomInteger,
