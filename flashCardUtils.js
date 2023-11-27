@@ -57,11 +57,22 @@ function evaluateAnswer(a, b) {
 
 function elementTest(testElement) {
   console.log(testElement.children[0]);
-  // const button = testElement.children[1].children[0];
-  // const input = testElement.children[1].children[1];
-  // const image = testElement.children[1].children[2];
-  // console.log(button, input, image);
-  // console.dir(testElement);
+
+  //BELOW THIS LINE IS OLD STUFF; ABOVE THIS LINE IS NEWLY IMPLEMENTED LOGIC
+
+  //update the card and input showing last user problem and answer
+
+  updateCard(lastCard, currentProblem);
+  lastUserAnswer.value = currentUserAnswer.value;
+
+  // create evaluation object to display correctness of answer
+  const evaluation = evaluateAnswer(
+    currentProblem.answer,
+    lastUserAnswer.value
+  );
+  lastUserAnswer.style.color = evaluation.isCorrect ? "green" : "red";
+  isCorrect.textContent = evaluation.message;
+  picture.src = evaluation.image;
 }
 
 export {
