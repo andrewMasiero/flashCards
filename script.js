@@ -7,39 +7,33 @@ import {
   evaluateAnswer,
 } from "./flashCardUtils.js";
 
-let currentUserAnswer = document.querySelector("#current-user-answer");
-let card = document.querySelector("#current-problem > div> .card");
-let lastUserAnswer = document.querySelector("#last-user-answer");
-let lastCard = document.querySelector("#last-problem > div> .card");
-let currentProblem = generateEquation(1, 9, "*");
-let picture = document.querySelector("#is-correct-image > img");
-let submitButton = document.querySelector("#hidden-submit");
-let setupForm = document.getElementById("setup-form");
-card.innerHTML = `${currentProblem.equation}<br><br>?`;
-
 // ELEMENTS
 const currentProblemSection = collectElements(
   document.querySelector("#current-problem > div").children,
   ["button", "input", "image"]
 );
-// console.log(currentProblemSection.input);
 
 const lastProblemSection = collectElements(
   document.querySelector("#last-problem > div").children,
   ["button", "input", "image"]
 );
 lastProblemSection.title = document.querySelector("#last-problem > h2");
-console.dir(lastProblemSection.image);
 
-// OTHER VARIABLES
+// UNUSED?
+let submitButton = document.querySelector("#hidden-submit");
+let setupForm = document.getElementById("setup-form");
 
-document.addEventListener("keypress", (e) => {
-  console.log(currentProblemSection);
-  console.dir(currentProblemSection);
-});
+// OTHER VARIABLE DECLARATIONS
+let problem = generateEquation(1, 9, "*");
 
-currentUserAnswer.addEventListener("keypress", (e) => {
-  if (e.key === "Enter" && currentUserAnswer.value !== "") {
+// main sections
+// document.addEventListener("keypress", (e) => {
+//   console.log(currentProblemSection);
+//   console.dir(currentProblemSection);
+// });
+
+currentProblemSection.input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter" && currentProblemSection.input.value !== "") {
     e.preventDefault();
     updateLastProblem();
     updateCurrentProblem();
@@ -48,15 +42,15 @@ currentUserAnswer.addEventListener("keypress", (e) => {
 
 function updateLastProblem() {
   //update the card and input showing last user problem and answer
-  updateCard(lastCard, currentProblem);
-  lastUserAnswer.value = currentUserAnswer.value;
+  updateCard(lastProblemSection.button, problem);
+  lastProblemSection.input.value = currentProblemSection.input.value;
 
   // create evaluation object to display correctness of answer
   const evaluation = evaluateAnswer(
-    currentProblem.answer,
-    lastUserAnswer.value
+    problem.answer,
+    lastProblemSection.input.value
   );
-  lastUserAnswer.style.color = evaluation.isCorrect ? "green" : "red";
+  lastProblemSection.input.style.color = evaluation.isCorrect ? "green" : "red";
   lastProblemSection.title.textContent = evaluation.message;
   lastProblemSection.image.src = evaluation.image;
 }
@@ -64,9 +58,9 @@ function updateLastProblem() {
 function updateCurrentProblem() {
   checkSetup();
   // reset the current problem and answer
-  currentProblem = generateEquation(1, 9, ["*"]);
-  card.innerHTML = `${currentProblem.equation}<br><br>?`;
-  currentUserAnswer.value = "";
+  problem = generateEquation(1, 9, ["*"]);
+  currentProblemSection.button.innerHTML = `${problem.equation}<br><br>?`;
+  currentProblemSection.input.value = "";
 }
 
 function checkSetup() {
