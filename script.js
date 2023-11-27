@@ -12,7 +12,6 @@ let card = document.querySelector("#current-problem > div> .card");
 let lastUserAnswer = document.querySelector("#last-user-answer");
 let lastCard = document.querySelector("#last-problem > div> .card");
 let currentProblem = generateEquation(1, 9, "*");
-let isCorrect = document.querySelector("#is-correct-text");
 let picture = document.querySelector("#is-correct-image > img");
 let submitButton = document.querySelector("#hidden-submit");
 let setupForm = document.getElementById("setup-form");
@@ -58,7 +57,7 @@ function updateLastProblem() {
     lastUserAnswer.value
   );
   lastUserAnswer.style.color = evaluation.isCorrect ? "green" : "red";
-  isCorrect.textContent = evaluation.message;
+  lastProblemSection.title.textContent = evaluation.message;
   picture.src = evaluation.image;
 }
 
