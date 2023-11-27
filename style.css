@@ -32,7 +32,7 @@ header > nav {
   justify-content: space-between;
 }
 header > nav > button {
-  margin: 0;
+  margin: 0.5%;
   padding: 1.5%;
   font-size: large;
   width: 25%;
@@ -46,7 +46,7 @@ section {
   padding: 1%;
 }
 #setup {
-  width: 30%;
+  width: 35%;
 }
 #setup > h1,
 #setup > h2 {
@@ -75,7 +75,7 @@ h2 {
   width: 3em;
   border: solid 0.1em #533535;
   border-radius: 10px;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-top: 0.1rem;
 }
 
@@ -87,17 +87,17 @@ main > div {
 }
 
 .answer {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bolder;
   text-align: center;
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
   border: solid 0.2em #533535;
-  border-radius: 8rem;
+  border-radius: 6rem;
   margin: 0 4%;
 }
-#current {
-  border-bottom: solid 1em #53353580;
+#current-problem {
+  border-bottom: solid 0.5em #53353580;
   margin-bottom: 1%;
   padding-bottom: 4%;
 }
@@ -116,14 +116,16 @@ section > div {
   justify-content: space-between;
   width: 100%;
 }
+#is-correct-text {
+}
 
-#is-correct,
+#is-correct-image,
 #blank-image {
   display: flex;
   flex-direction: column;
   width: 30%;
 }
-
 img {
   margin: 1%;
+  width: 10em;
 }

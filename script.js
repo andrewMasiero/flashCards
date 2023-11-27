@@ -1,97 +1,54 @@
-let userAnswer = document.querySelector("#current > div> .answer");
-let card = document.querySelector("#current > div> .card");
-let lastUserAnswer = document.querySelector("#last > div> .answer");
-let lastCard = document.querySelector("#last > div> .card");
-let current = generateEquation(1, 9, "*");
-let isCorrect = document.querySelector("#is-correct > h1");
-let picture = document.querySelector("#is-correct > img");
+import {
+  generateCard,
+  updateCard,
+  getRandomInteger,
+  generateEquation,
+  evaluateAnswer,
+} from "./flashCardUtils.js";
+
+let currentUserAnswer = document.querySelector("#current-user-answer");
+let card = document.querySelector("#current-problem > div> .card");
+let lastUserAnswer = document.querySelector("#last-user-answer");
+let lastCard = document.querySelector("#last-problem > div> .card");
+let currentProblem = generateEquation(1, 9, "*");
+let isCorrect = document.querySelector("#is-correct-text");
+let picture = document.querySelector("#is-correct-image > img");
 let submitButton = document.querySelector("#hidden-submit");
-let setupForm = document.getElementById("selection");
-card.innerHTML = `${current.equation}<br><br>?`;
+let setupForm = document.getElementById("setup-form");
+card.innerHTML = `${currentProblem.equation}<br><br>?`;
 
-function generateCard() {
-  return "test card";
-}
-
-userAnswer.addEventListener("keypress", (e) => {
-  if (e.key === "Enter" && userAnswer.value !== "") {
-    // const selectedOperations = submitButton.click();
-    // console.log(selectedOperations);
-    // if (selectedOperations) {
-    // console.log(selectedOperations);
+currentUserAnswer.addEventListener("keypress", (e) => {
+  if (e.key === "Enter" && currentUserAnswer.value !== "") {
     e.preventDefault();
-    lastCard.innerHTML = `${current.equation}<br><br>${current.answer}`;
-    lastUserAnswer.value = userAnswer.value;
-    const evaluation = evaluateAnswer(current.answer, lastUserAnswer.value);
-    lastUserAnswer.style.color = evaluation.boolean ? "green" : "red";
-    isCorrect.textContent = evaluation.text;
-    picture.src = evaluation.image;
-    current = generateEquation(1, 9, "*");
-    card.innerHTML = `${current.equation}<br><br>?`;
-    userAnswer.value = "";
-    // }
+    updateLastProblem();
+    updateCurrentProblem();
   }
-  //   card.classList.toggle("flip");
 });
 
-function getRandomInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function generateEquation(min, max, operend) {
-  const a = getRandomInteger(min, max);
-  const b = getRandomInteger(min, max);
-  const current = { equation: `${a} ${operend} ${b}` };
-  switch (operend) {
-    case "+":
-      current.answer = a + b;
-      break;
-    case "-":
-      current.answer = a - b;
-      break;
-    case "*":
-      current.answer = a * b;
-      break;
-    case "/":
-      current.answer = a / b;
-      break;
-  }
-  return current;
+function updateLastProblem() {
+  //update the card and input showing last user problem and answer
+  updateCard(lastCard, currentProblem);
+  lastUserAnswer.value = currentUserAnswer.value;
+
+  // create evaluation object to display correctness of answer
+  const evaluation = evaluateAnswer(
+    currentProblem.answer,
+    lastUserAnswer.value
+  );
+  lastUserAnswer.style.color = evaluation.isCorrect ? "green" : "red";
+  isCorrect.textContent = evaluation.message;
+  picture.src = evaluation.image;
 }
 
-function evaluateAnswer(a, b) {
-  a = parseInt(a);
-  b = parseInt(b);
-  let result = {};
-  if (a === b) {
-    result.text = "Correct! 👍🐢";
-    result.image = "images/happyPuppy.jpg";
-    result.boolean = true;
-    var audio = new Audio("sounds/short-crowd-cheer-6713.mp3");
-  } else {
-    result.text = "Wrong! 👎🙁";
-    result.image = "images/elGato.jpg";
-    result.boolean = false;
-    var audio = new Audio(
-      "sounds/080047_lose_funny_retro_video-game-80925.mp3"
-    );
-  }
-  audio.play();
-  return result;
+function updateCurrentProblem() {
+  checkSetup();
+  // reset the current problem and answer
+  currentProblem = generateEquation(1, 9, ["*"]);
+  card.innerHTML = `${currentProblem.equation}<br><br>?`;
+  currentUserAnswer.value = "";
 }
 
-// setupForm.addEventListener("submit", function (event) {
-//   event.preventDefault();
-//   const checkboxes = document.querySelectorAll(
-//     'input[name="operation"]:checked'
-//   );
-//   const selections = Array.from(checkboxes).map((checkbox) => checkbox.value);
-//   if (selections.length > 0) {
-//     return selections;
-//   }
-//   console.log(selections);
-//   console.log("should return false");
-//   return false;
-
-//   // Now you can use the selectedOperations array to generate problems based on user selections.
-//   // For example, if "addition" is selected, generate addition problems; if "multiplication" is selected, generate multiplication problems, and so on.
-// });
+function checkSetup() {
+  //check the setup form for values to determine type of problems we want to use
+  //check if checkboxes are checked; get values if they're checked
+}

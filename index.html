@@ -23,7 +23,7 @@
             <h2>MATH</h2>
             <h3>Choose a type and number range:</h3>
 
-            <form class="setup" action="script.js" id="selection">
+            <form class="setup" action="script.js" id="setup-form">
                 <input type="checkbox" id="addition" name="operation" value="+">
                 <label for="addition">Addition</label><br>
 
@@ -42,34 +42,37 @@
 
         </section>
         <section id="game">
-            <div id="current">
+            <div id="current-problem">
                 <h2>CURRENT PROBLEM</h2>
                 <div class="qa-container">
                     <button type="button" class="card">
-                        2 x 3
+                        <p>2 x 3</p>
                     </button>
-                    <input type="text" class="answer" placeholder="?" autofocus>
+                    <input id="current-user-answer" type="text" class="answer" placeholder="?" autofocus>
                     <div id="blank-image">
-                        <h1></h1><img src="" alt="">
+                        <img src="" alt="">
                     </div>
                 </div>
             </div>
-            <div id="last">
+            <div id="last-problem">
                 <h2>LAST PROBLEM</h2>
                 <div class="qa-container">
                     <button type="button" class="card">
 
                     </button>
-                    <input type="text" class="answer" placeholder="?" disabled>
-                    <div id="is-correct">
-                        <h1></h1><img src="" alt="">
+                    <div>
+                        <input id="last-user-answer" type="text" class="answer" placeholder="?" disabled>
+                        <h3 id="is-correct-text"></h3>
+                    </div>
+                    <div id="is-correct-image">
+                        <img src="" alt="">
                     </div>
                 </div>
             </div>
         </section>
     </main>
     <footer>This is the footer</footer>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
