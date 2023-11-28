@@ -77,8 +77,15 @@ function updateCurrentProblem(currentProblemSection) {
   currentInput.value = "";
 }
 
-function checkSetup() {
+function checkSetup(setupForm) {
+  let list = [];
   //check the setup form for values to determine type of problems we want to use
+  for (let i = 0; i < 4; i++) {
+    if (setupForm[i].checked) list.push(setupForm[i].value);
+  }
+  console.log(list);
+
+  return list;
   //check if checkboxes are checked; get values if they're checked
 }
 
@@ -94,11 +101,8 @@ function collectElements(htmlCollection, names) {
   }
 }
 
-//BELOW THIS LINE IS OLD STUFF; ABOVE THIS LINE IS NEWLY IMPLEMENTED LOGIC
-
-//update the card and input showing last user problem and answer
-
 export {
+  checkSetup,
   updateCurrentProblem,
   updateLastProblem,
   collectElements,
@@ -108,20 +112,3 @@ export {
   generateEquation,
   evaluateAnswer,
 };
-
-// setupForm.addEventListener("submit", function (event) {
-//   event.preventDefault();
-//   const checkboxes = document.querySelectorAll(
-//     'input[name="operation"]:checked'
-//   );
-//   const selections = Array.from(checkboxes).map((checkbox) => checkbox.value);
-//   if (selections.length > 0) {
-//     return selections;
-//   }
-//   console.log(selections);
-//   console.log("should return false");
-//   return false;
-
-//   // Now you can use the selectedOperations array to generate problems based on user selections.
-//   // For example, if "addition" is selected, generate addition problems; if "multiplication" is selected, generate multiplication problems, and so on.
-// });

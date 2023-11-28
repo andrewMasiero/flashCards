@@ -1,4 +1,5 @@
 import {
+  checkSetup,
   updateCurrentProblem,
   updateLastProblem,
   collectElements,
@@ -22,14 +23,17 @@ const lastProblemSection = collectElements(
 );
 lastProblemSection.lastTitle = document.querySelector("#last-problem > h2");
 
+const setupForm = document.getElementById("setup-form");
+
 // UNUSED?
-let submitButton = document.querySelector("#hidden-submit");
-let setupForm = document.getElementById("setup-form");
+const submitButton = document.querySelector("#hidden-submit");
 
 currentProblemSection.currentInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter" && currentProblemSection.currentInput.value !== "") {
     e.preventDefault();
     updateLastProblem(currentProblemSection, lastProblemSection);
+
+    let arithmaticList = checkSetup(setupForm);
     currentProblemSection.currentProblem = generateEquation(1, 9, ["*"]);
     updateCurrentProblem(currentProblemSection);
   }
