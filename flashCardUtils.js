@@ -12,25 +12,32 @@ function getRandomInteger(min, max) {
 }
 
 function generateEquation(min, max, operand) {
-  const a = getRandomInteger(min, max);
-  const b = getRandomInteger(min, max);
+  let current = {};
   operand = operand[getRandomInteger(1, operand.length) - 1];
-
-  const current = { equation: `${a} ${operand} ${b}` };
+  let a = getRandomInteger(min, max);
+  let b = getRandomInteger(min, max);
   switch (operand) {
     case "+":
       current.answer = a + b;
       break;
     case "-":
+      if (a < b) {
+        const c = a;
+        a = b;
+        b = c;
+      }
       current.answer = a - b;
       break;
     case "*":
       current.answer = a * b;
       break;
     case "/":
+      a *= b;
       current.answer = a / b;
       break;
   }
+
+  current.equation = `${a} ${operand} ${b}`;
   return current;
 }
 
@@ -83,7 +90,6 @@ function checkSetup(setupForm) {
   for (let i = 0; i < 4; i++) {
     if (setupForm[i].checked) list.push(setupForm[i].value);
   }
-  console.log(list);
 
   return list;
   //check if checkboxes are checked; get values if they're checked
