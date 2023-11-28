@@ -21,11 +21,7 @@ function generateEquation(min, max, operand) {
       current.answer = a + b;
       break;
     case "-":
-      if (a < b) {
-        const c = a;
-        a = b;
-        b = c;
-      }
+      a += b;
       current.answer = a - b;
       break;
     case "*":
