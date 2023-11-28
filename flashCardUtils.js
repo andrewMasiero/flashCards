@@ -55,28 +55,53 @@ function evaluateAnswer(a, b) {
   return result;
 }
 
-function elementTest(testElement) {
-  console.log(testElement.children[0]);
-
-  //BELOW THIS LINE IS OLD STUFF; ABOVE THIS LINE IS NEWLY IMPLEMENTED LOGIC
+function updateLastProblem(currentProblemSection, lastProblemSection) {
+  let { currentButton, currentInput, currentImage, currentProblem } =
+    currentProblemSection;
+  let { lastButton, lastInput, lastImage, lastTitle } = lastProblemSection;
 
   //update the card and input showing last user problem and answer
+  updateCard(lastButton, currentProblem);
+  lastInput.value = currentInput.value;
 
-  updateCard(lastCard, currentProblem);
-  lastUserAnswer.value = currentUserAnswer.value;
-
-  // create evaluation object to display correctness of answer
-  const evaluation = evaluateAnswer(
-    currentProblem.answer,
-    lastUserAnswer.value
-  );
-  lastUserAnswer.style.color = evaluation.isCorrect ? "green" : "red";
-  isCorrect.textContent = evaluation.message;
-  picture.src = evaluation.image;
+  // is the answer correct?
+  const evaluation = evaluateAnswer(currentProblem.answer, lastInput.value);
+  lastInput.style.color = evaluation.isCorrect ? "green" : "red";
+  lastTitle.textContent = evaluation.message;
+  lastImage.src = evaluation.image;
 }
 
+function updateCurrentProblem(currentProblemSection) {
+  let { currentButton, currentInput, currentProblem } = currentProblemSection;
+  currentButton.innerHTML = `${currentProblem.equation}<br><br>?`;
+  currentInput.value = "";
+}
+
+function checkSetup() {
+  //check the setup form for values to determine type of problems we want to use
+  //check if checkboxes are checked; get values if they're checked
+}
+
+function collectElements(htmlCollection, names) {
+  if (htmlCollection.length === names.length) {
+    //create an object with the name from the names list
+    const htmlArray = Array.from(htmlCollection);
+    const collection = {};
+    for (let i = 0; i < htmlArray.length; i++) {
+      collection[names[i]] = htmlArray[i];
+    }
+    return collection;
+  }
+}
+
+//BELOW THIS LINE IS OLD STUFF; ABOVE THIS LINE IS NEWLY IMPLEMENTED LOGIC
+
+//update the card and input showing last user problem and answer
+
 export {
-  elementTest,
+  updateCurrentProblem,
+  updateLastProblem,
+  collectElements,
   generateCard,
   updateCard,
   getRandomInteger,
