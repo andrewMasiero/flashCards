@@ -115,10 +115,16 @@ function collectElements(htmlCollection, names) {
   }
 }
 
+let intervalId = null;
 function startTimer() {
   let timer = document.getElementById("timer-display");
   let timeInSeconds = 120;
-  const timerInterval = setInterval(updateTimer, 1000);
+
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
+  intervalId = setInterval(updateTimer, 1000);
 
   function updateTimer() {
     const minutes = Math.floor(timeInSeconds / 60);
@@ -126,7 +132,7 @@ function startTimer() {
     const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     timer.textContent = formattedTime;
     if (timeInSeconds === 0) {
-      clearInterval(timerInterval);
+      clearInterval(intervalId);
       alert("Time's Up!");
     } else {
       timeInSeconds--;
