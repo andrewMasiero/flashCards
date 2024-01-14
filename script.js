@@ -1,3 +1,5 @@
+// browser-sync start --server --files "**/*"
+
 import {
   checkSetup,
   updateCurrentProblem,
@@ -46,7 +48,7 @@ currentProblemSection.currentInput.addEventListener("keypress", (e) => {
 
 // TIMER
 document.addEventListener("DOMContentLoaded", () => {
-  const timerForm = document.getElementById("start-timer");
+  const timerForm = document.getElementById("start-form");
 
   timerForm.addEventListener("submit", (event) => {
     event.preventDefault();
