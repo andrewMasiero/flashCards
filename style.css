@@ -55,6 +55,32 @@ section {
 #setup > form {
   flex: 0 1 auto;
 }
+.start {
+  display: flex;
+}
+.timer {
+  display: flex;
+  flex-direction: column;
+}
+#start-timer {
+  font-size: 24px;
+}
+#timer-display {
+  background-color: black;
+  color: white;
+  padding: 5px;
+  font: monospace;
+  font-weight: 600;
+  font-size: 48px;
+}
+.score {
+  margin: 20px 40px;
+}
+.align-right {
+  text-align: right;
+  padding-right: 10px;
+}
+
 #game {
   display: flex;
   flex-direction: column;
