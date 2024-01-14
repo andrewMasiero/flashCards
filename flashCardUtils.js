@@ -51,14 +51,18 @@ function evaluateAnswer(a, b) {
     result.image = "images/elGato.jpg";
     result.isCorrect = false;
     var audio = new Audio(
-      "sounds/080047_lose_funny_retro_video-game-80925.mp3"
+      "sounds/080047_lose_funny_retro_video-game-80925.mp3",
     );
   }
   audio.play();
   return result;
 }
 
-function updateLastProblem(currentProblemSection, lastProblemSection) {
+function updateLastProblem(
+  currentProblemSection,
+  lastProblemSection,
+  evaluation,
+) {
   let { currentButton, currentInput, currentImage, currentProblem } =
     currentProblemSection;
   let { lastButton, lastInput, lastImage, lastTitle } = lastProblemSection;
@@ -68,10 +72,18 @@ function updateLastProblem(currentProblemSection, lastProblemSection) {
   lastInput.value = currentInput.value;
 
   // is the answer correct?
-  const evaluation = evaluateAnswer(currentProblem.answer, lastInput.value);
   lastInput.style.color = evaluation.isCorrect ? "green" : "red";
   lastTitle.textContent = evaluation.message;
   lastImage.src = evaluation.image;
+}
+
+function resetLastProblemSection(lastProblemSection) {
+  let { lastButton, lastInput, lastImage, lastTitle } = lastProblemSection;
+  lastButton.textContent = "";
+  lastInput.value = "";
+  lastInput.style.color = "gray";
+  lastImage.src = "";
+  lastTitle.textContent = "LAST PROBLEM";
 }
 
 function updateCurrentProblem(currentProblemSection) {
@@ -103,6 +115,53 @@ function collectElements(htmlCollection, names) {
   }
 }
 
+function startTimer() {
+  let timer = document.getElementById("timer-display");
+  let timeInSeconds = 120;
+  const timerInterval = setInterval(updateTimer, 1000);
+
+  function updateTimer() {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    timer.textContent = formattedTime;
+    if (timeInSeconds === 0) {
+      clearInterval(timerInterval);
+      alert("Time's Up!");
+    } else {
+      timeInSeconds--;
+    }
+  }
+}
+
+function updateScore(evaluation) {
+  const scoreElement = document.getElementById("score");
+  const problemsCountElement = document.getElementById("problems-count");
+  const correctCountElement = document.getElementById("correct-count");
+
+  let totalCount = parseInt(problemsCountElement.textContent);
+  totalCount++;
+  problemsCountElement.textContent = totalCount.toString();
+
+  let correctCount = parseInt(correctCountElement.textContent);
+  if (evaluation.isCorrect) {
+    correctCount++;
+    correctCountElement.textContent = correctCount.toString();
+  }
+  let scoreNumber = (correctCount / totalCount) * 100;
+  scoreElement.textContent = `${Math.round(scoreNumber).toString()}%`;
+}
+
+function resetScore() {
+  const scoreElement = document.getElementById("score");
+  const problemsCountElement = document.getElementById("problems-count");
+  const correctCountElement = document.getElementById("correct-count");
+
+  scoreElement.textContent = "0%";
+  problemsCountElement.textContent = 0;
+  correctCountElement.textContent = 0;
+}
+
 export {
   checkSetup,
   updateCurrentProblem,
@@ -113,4 +172,8 @@ export {
   getRandomInteger,
   generateEquation,
   evaluateAnswer,
+  startTimer,
+  updateScore,
+  resetScore,
+  resetLastProblemSection,
 };

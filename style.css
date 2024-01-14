@@ -1,6 +1,12 @@
+:root {
+  --primary-color: #eac696; /* Define your primary color */
+  --secondary-color: #533535; /* Define your secondary color */
+  --accent-color: #2ecc71; /* Define your text color */
+}
+
 * {
-  background-color: #eac696;
-  color: #533535;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 body {
@@ -10,10 +16,10 @@ body {
 main,
 header {
   width: 100%;
-  border: solid 0.1em #533535;
+  border: solid 0.1em var(--secondary-color);
   border-radius: 0.5em;
   padding: 1%;
-  background-color: #eac696;
+  background-color: var(--primary-color);
   display: flex;
 }
 header {
@@ -92,7 +98,7 @@ th {
 #game {
   display: flex;
   flex-direction: column;
-  border-left: solid 0.2em #533535;
+  border-left: solid 0.2em var(--secondary-color);
   width: 70%;
   flex: 1;
 }
@@ -101,13 +107,13 @@ input {
 }
 
 h2 {
-  border-bottom: solid 0.2em #533535;
+  border-bottom: solid 0.2em var(--secondary-color);
 }
 .card {
   background-color: #f5f5f5;
   height: 4.5em;
   width: 3em;
-  border: solid 0.1em #533535;
+  border: solid 0.1em var(--secondary-color);
   border-radius: 10px;
   font-size: 2rem;
   margin-top: 0.1rem;
@@ -132,12 +138,13 @@ main > div {
   text-align: center;
   width: 6rem;
   height: 6rem;
-  border: solid 0.2em #533535;
+  border: solid 0.2em var(--secondary-color);
   border-radius: 6rem;
   margin: 0 4%;
+  color: var(--secondary-color);
 }
 #current-problem {
-  border-bottom: solid 0.5em #53353580;
+  border-bottom: solid 0.5em var(--secondary-color) 80;
   margin-bottom: 1%;
   padding-bottom: 4%;
 }
@@ -147,7 +154,7 @@ section > div {
 }
 
 .answer:focus {
-  border: solid 0.21em #533535;
+  border: solid 0.21em var(--secondary-color);
 }
 
 .qa-container {
