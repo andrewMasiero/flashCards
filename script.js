@@ -56,7 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function startTimer() {
-    console.log("Timer started");
-    alert("Timer started!");
+    let timer = document.getElementById("timer-display");
+    let timeInSeconds = 120;
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    function updateTimer() {
+      const minutes = Math.floor(timeInSeconds / 60);
+      const seconds = timeInSeconds % 60;
+      const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      timer.textContent = formattedTime;
+      if (timeInSeconds === 0) {
+        clearInterval(timerInterval);
+      } else {
+        timeInSeconds--;
+      }
+    }
   }
 });

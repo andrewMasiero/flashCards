@@ -70,24 +70,29 @@
                 <form class="start" action="script.js" id="start-form">
                     <div class="timer">
                         <input
+                            class="big-text"
                             type="submit"
                             name="start-timer"
                             id="start-timer"
                             value="Start Timer"
                         />
-                        <label for="start-timer" id="timer-display">5:00</label>
+                        <label for="start-timer" id="timer-display"
+                            >02:00</label
+                        >
                     </div>
                     <div class="score">
                         <table>
-                            <th class="align-right">Score</th>
-                            <th>0%</th>
+                            <th class="align-left big-text">Score</th>
+                            <th class="big-text" id="score">0%</th>
                             <tr>
-                                <td class="align-right">Problems</td>
-                                <td>0</td>
+                                <td class="align-left big-text">Problems</td>
+                                <td class="big-text" id="problems-answered">
+                                    0
+                                </td>
                             </tr>
                             <tr>
-                                <td class="align-right">Correct</td>
-                                <td>0</td>
+                                <td class="align-left big-text">Correct</td>
+                                <td class="big-text" id="correct-count">0</td>
                             </tr>
                         </table>
                     </div>
