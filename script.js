@@ -45,3 +45,16 @@ currentProblemSection.currentInput.addEventListener("keypress", (e) => {
 });
 
 // TIMER
+document.addEventListener("DOMContentLoaded", () => {
+  const timerForm = document.getElementById("start-timer");
+
+  timerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    startTimer();
+  });
+
+  function startTimer() {
+    console.log("Timer started");
+    alert("Timer started!");
+  }
+});
