@@ -22,9 +22,14 @@ const currentProblemSection = collectElements(
   ["currentButton", "currentInput", "currentImage"],
 );
 const setupForm = document.getElementById("setup-form");
-let arithmaticList = checkSetup(setupForm);
-currentProblemSection.currentProblem = generateEquation(1, 9, arithmaticList);
-updateCurrentProblem(currentProblemSection);
+setupForm.addEventListener("change", (e) => {
+  if (e.target.type === "checkbox") {
+    setProblem();
+  }
+});
+
+let arithmaticList;
+setProblem();
 
 const lastProblemSection = collectElements(
   document.querySelector("#last-problem > div").children,
@@ -32,9 +37,7 @@ const lastProblemSection = collectElements(
 );
 lastProblemSection.lastTitle = document.querySelector("#last-problem > h2");
 
-// UNUSED?
-const submitButton = document.querySelector("#hidden-submit");
-
+// ANSWER THE PROBLEM
 currentProblemSection.currentInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter" && currentProblemSection.currentInput.value !== "") {
     e.preventDefault();
@@ -44,14 +47,7 @@ currentProblemSection.currentInput.addEventListener("keypress", (e) => {
     );
     updateLastProblem(currentProblemSection, lastProblemSection, evaluation);
     updateScore(evaluation);
-
-    arithmaticList = checkSetup(setupForm);
-    currentProblemSection.currentProblem = generateEquation(
-      1,
-      9,
-      arithmaticList,
-    );
-    updateCurrentProblem(currentProblemSection);
+    setProblem();
   }
 });
 
@@ -69,6 +65,10 @@ function startGame() {
   startTimer();
   resetLastProblemSection(lastProblemSection);
   resetScore();
+  setProblem();
+}
+
+function setProblem() {
   arithmaticList = checkSetup(setupForm);
   currentProblemSection.currentProblem = generateEquation(1, 9, arithmaticList);
   updateCurrentProblem(currentProblemSection);
