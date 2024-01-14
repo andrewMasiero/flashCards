@@ -28,7 +28,7 @@ header {
   margin-bottom: -0.1em;
 }
 header > h1 {
-  width: 25%;
+  /*  width: 25%;*/
   font-size: 3em;
   margin: 0.5%;
 }
