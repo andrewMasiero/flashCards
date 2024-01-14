@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       timer.textContent = formattedTime;
       if (timeInSeconds === 0) {
         clearInterval(timerInterval);
+        alert("Time's Up!");
       } else {
         timeInSeconds--;
       }
