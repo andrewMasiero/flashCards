@@ -51,7 +51,7 @@ function evaluateAnswer(a, b) {
     result.image = "images/elGato.jpg";
     result.isCorrect = false;
     var audio = new Audio(
-      "sounds/080047_lose_funny_retro_video-game-80925.mp3",
+      "sounds/080047_lose_funny_retro_video-game-80925.mp3"
     );
   }
   audio.play();
@@ -61,7 +61,7 @@ function evaluateAnswer(a, b) {
 function updateLastProblem(
   currentProblemSection,
   lastProblemSection,
-  evaluation,
+  evaluation
 ) {
   let { currentButton, currentInput, currentImage, currentProblem } =
     currentProblemSection;
@@ -129,7 +129,9 @@ function startTimer() {
   function updateTimer() {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
     timer.textContent = formattedTime;
     if (timeInSeconds === 0) {
       clearInterval(intervalId);
@@ -159,9 +161,9 @@ function updateScore(evaluation) {
 }
 
 function resetScore() {
-  const scoreElement = document.getElementById("score");
   const problemsCountElement = document.getElementById("problems-count");
   const correctCountElement = document.getElementById("correct-count");
+  const scoreElement = document.getElementById("score");
 
   scoreElement.textContent = "0%";
   problemsCountElement.textContent = 0;

@@ -179,3 +179,8 @@ img {
   margin: 1%;
   width: 10em;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

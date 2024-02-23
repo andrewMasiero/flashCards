@@ -1,140 +1,105 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Flash Cards</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
 
-    <body>
-        <header>
-            <h1>Flash Cards</h1>
-            <!--             <nav>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash Cards</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Flash Cards</h1>
+        <!--             <nav>
                 <button>Math</button>
                 <button>English</button>
                 <button>Science</button>
                 <button>Social Studies</button>
             </nav>
  -->
-        </header>
-        <main>
-            <section id="setup">
-                <h2>MATH</h2>
-                <h3>Choose a type and number range:</h3>
-
-                <form class="setup" action="script.js" id="setup-form">
-                    <input
-                        type="checkbox"
-                        id="addition"
-                        name="operation"
-                        value="+"
-                        checked="true"
-                    />
-                    <label for="addition">Addition</label><br />
-
-                    <input
-                        type="checkbox"
-                        id="subtraction"
-                        name="operation"
-                        value="-"
-                        checked="true"
-                    />
-                    <label for="subtraction">Subtraction</label><br />
-
-                    <input
-                        type="checkbox"
-                        id="multiplication"
-                        name="operation"
-                        value="*"
-                        checked="true"
-                    />
-                    <label for="multiplication">Multiplication</label><br />
-
-                    <input
-                        type="checkbox"
-                        id="division"
-                        name="operation"
-                        value="/"
-                        checked="true"
-                    />
-                    <label for="division">Division</label><br />
-
-                    <input
-                        type="submit"
-                        id="hidden-submit"
-                        style="display: none"
-                    />
-                </form>
-                <h2>START</h2>
-                <h3>GET READY!</h3>
-                <form class="start" action="script.js" id="start-form">
-                    <div class="timer">
-                        <input
-                            class="big-text"
-                            type="submit"
-                            name="start-timer"
-                            id="start-timer"
-                            value="Start Timer"
-                        />
-                        <label
-                            for="start-timer"
-                            class="align-center"
-                            id="timer-display"
-                            >02:00</label
-                        >
-                    </div>
-                    <div class="score">
-                        <table>
-                            <th class="align-left big-text">Score</th>
-                            <th class="big-text" id="score">0%</th>
-                            <tr>
-                                <td class="align-left big-text">Problems</td>
-                                <td class="big-text" id="problems-count">0</td>
-                            </tr>
-                            <tr>
-                                <td class="align-left big-text">Correct</td>
-                                <td class="big-text" id="correct-count">0</td>
-                            </tr>
-                        </table>
-                    </div>
-                </form>
-            </section>
-            <section id="game">
-                <div id="current-problem">
-                    <h2>CURRENT PROBLEM</h2>
-                    <div class="qa-container">
-                        <button type="button" class="card">
-                            <p>2 x 3</p>
-                            <p>?</p>
-                        </button>
-                        <input
-                            id="current-user-answer"
-                            type="text"
-                            class="answer"
-                            placeholder="?"
-                            autofocus
-                        />
-                        <img id="blank-image" src="" alt="" />
-                    </div>
+    </header>
+    <main>
+        <section id="setup">
+            <div>
+                <div>
+                    <h2>MATH</h2>
+                    <h3>Choose a type and number range:</h3>
                 </div>
-                <div id="last-problem">
-                    <h2>LAST PROBLEM</h2>
-                    <div class="qa-container">
-                        <button type="button" class="card"></button>
-                        <input
-                            id="last-user-answer"
-                            type="text"
-                            class="answer"
-                            placeholder="?"
-                            disabled
-                        />
-                        <img id="is-correct-image" src="" alt="" />
-                    </div>
+                <div>
+                    <form class="setup" action="script.js" id="setup-form">
+                        <input type="checkbox" id="addition" name="operation" value="+" checked="true" />
+                        <label for="addition">Addition</label><br />
+
+                        <input type="checkbox" id="subtraction" name="operation" value="-" checked="true" />
+                        <label for="subtraction">Subtraction</label><br />
+
+                        <input type="checkbox" id="multiplication" name="operation" value="*" checked="true" />
+                        <label for="multiplication">Multiplication</label><br />
+
+                        <input type="checkbox" id="division" name="operation" value="/" checked="true" />
+                        <label for="division">Division</label><br />
+
+                        <input type="submit" id="hidden-submit" style="display: none" />
+                    </form>
                 </div>
-            </section>
-        </main>
-        <footer>This is the footer</footer>
-        <script defer type="module" src="script.js"></script>
-    </body>
+            </div>
+            <div>
+                <div>
+                    <h2>START</h2>
+                    <h3>GET READY!</h3>
+                </div>
+                <div>
+                    <form class="start" action="script.js" id="start-form">
+                        <div class="timer">
+                            <input class="big-text" type="submit" name="start-timer" id="start-timer"
+                                value="Start Timer" />
+                            <label for="start-timer" class="align-center" id="timer-display">02:00</label>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="score">
+                    <table>
+
+                        <th class="align-left big-text">Date</th>
+                        <th class="align-left big-text">Problems</th>
+                        <th class="align-left big-text">Correct</th>
+                        <th class="align-left big-text">Score</th>
+                        <tr>
+                            <td class="big-text" id="date-field">0</td>
+                            <td class="big-text" id="problems-count">0</td>
+                            <td class="big-text" id="correct-count">0</td>
+                            <td class="big-text" id="score">0%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section id="game">
+            <div id="current-problem">
+                <h2>CURRENT PROBLEM</h2>
+                <div class="qa-container">
+                    <button type="button" class="card">
+                        <p>2 x 3</p>
+                        <p>?</p>
+                    </button>
+                    <input id="current-user-answer" type="text" class="answer" placeholder="?" autofocus />
+                    <img id="blank-image" src="" alt="" />
+                </div>
+            </div>
+            <div id="last-problem">
+                <h2>LAST PROBLEM</h2>
+                <div class="qa-container">
+                    <button type="button" class="card"></button>
+                    <input id="last-user-answer" type="text" class="answer" placeholder="?" disabled />
+                    <img id="is-correct-image" src="" alt="" />
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>This is the footer</footer>
+    <script defer type="module" src="script.js"></script>
+</body>
+
 </html>
