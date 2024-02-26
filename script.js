@@ -44,7 +44,7 @@ setProblem();
 // Generate date and add to date field in score section
 const dateField = document.getElementById("date-field");
 let d = new Date();
-dateField.textContent = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+dateField.textContent = `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
 
 // ANSWER THE PROBLEM
 currentProblemSection.currentInput.addEventListener("keypress", (e) => {
